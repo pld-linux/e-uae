@@ -8,9 +8,9 @@ Group:		Applications/Emulators
 Source0:	http://www.rcdrummond.net/uae/e-uae-%{version}/%{name}-%{version}.tar.bz2
 # Source0-md5:	a5ccafd3d8e74f733293a1beccbf9487
 URL:		http://www.rcdrummond.net/uae/
-BuildRequires:	gtk+2-devel
 BuildRequires:	SDL_gfx-devel
 BuildRequires:	SDL_sound-devel
+BuildRequires:	gtk+2-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
