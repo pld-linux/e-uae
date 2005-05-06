@@ -1,5 +1,5 @@
 Summary:	Unix Amiga Emulator
-Summary(pl):	Uniksowy Emulator Amigi
+Summary(pl):	Uniksowy emulator Amigi
 Name:		e-uae
 Version:	0.8.27
 Release:	1
@@ -20,6 +20,9 @@ the great features of WinUAE to non-Windows platforms. This version
 now finally has a name, E-UAE, since that's what everybody was calling
 it anyway. The 'E' can stand for anything you fancy. Experimental,
 extreme, exciting, egalitarian, eggplant, ...
+
+#%description -l pl
+# TODO
 
 %prep
 %setup -q
