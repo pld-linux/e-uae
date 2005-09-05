@@ -1,0 +1,10 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=UAE
+Comment=UAE Amiga Emulator
+Exec=uae
+Icon=uae.png
+Terminal=false
+Type=Application
+Categories=GTK;Utility;Emulator;
+# vi: encoding=utf-8
