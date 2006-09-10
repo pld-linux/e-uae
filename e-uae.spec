@@ -1,12 +1,13 @@
 Summary:	Unix Amiga Emulator
 Summary(pl):	Uniksowy emulator Amigi
 Name:		e-uae
-Version:	0.8.28
-Release:	0.1
+Version:	0.8.29
+%define	_wip	WIP3
+Release:	0.%{_wip}.0.1
 License:	GPL
 Group:		Applications/Emulators
-Source0:	http://www.rcdrummond.net/uae/e-uae-%{version}/%{name}-%{version}.tar.bz2
-# Source0-md5:	9fc186f9256d04f940304044e29175ef
+Source0:	http://www.rcdrummond.net/uae/e-uae-%{version}-%{_wip}/%{name}-%{version}-%{_wip}.tar.bz2
+# Source0-md5:	cae34d41eaef0336d5182155fd194deb
 Source1:	uae.desktop
 Source2:	uae.png
 URL:		http://www.rcdrummond.net/uae/
@@ -62,7 +63,7 @@ Eksperymentalny, ekstremalny, ekscytuj±cy, egalitarny...
 Ta wersja u¿ywa SDL jako wyj¶cia audio i wideo.
 
 %prep
-%setup -q
+%setup -q -n %{name}-%{version}-%{_wip}
 
 %build
 cp -f /usr/share/automake/config.* .
