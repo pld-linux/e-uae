@@ -1,5 +1,5 @@
 Summary:	Unix Amiga Emulator
-Summary(pl):	Uniksowy emulator Amigi
+Summary(pl.UTF-8):   Uniksowy emulator Amigi
 Name:		e-uae
 Version:	0.8.29
 %define	_wip	WIP3
@@ -29,17 +29,17 @@ now finally has a name, E-UAE, since that's what everybody was calling
 it anyway. The 'E' can stand for anything you fancy. Experimental,
 extreme, exciting, egalitarian, eggplant, ...
 
-%description -l pl
-To jest wersja UAE (Ubiquitous Amiga Emulator - wszêdobylskiego
+%description -l pl.UTF-8
+To jest wersja UAE (Ubiquitous Amiga Emulator - wszÄ™dobylskiego
 emulatora Amigi) z rdzeniem emulatora opartym na WinUAE 0.8.27. Jest
-to próba przeniesienia wielu wspania³ych mo¿liwo¶ci WinUAE na
-platformy inne ni¿ Windows. Ta wersja ma wreszcie nazwê - E-UAE - jako
-¿e w³a¶nie tak wszyscy j± nazywali. "E" mo¿e oznaczaæ co tylko chcemy.
-Eksperymentalny, ekstremalny, ekscytuj±cy, egalitarny...
+to prÃ³ba przeniesienia wielu wspaniaÅ‚ych moÅ¼liwoÅ›ci WinUAE na
+platformy inne niÅ¼ Windows. Ta wersja ma wreszcie nazwÄ™ - E-UAE - jako
+Å¼e wÅ‚aÅ›nie tak wszyscy jÄ… nazywali. "E" moÅ¼e oznaczaÄ‡ co tylko chcemy.
+Eksperymentalny, ekstremalny, ekscytujÄ…cy, egalitarny...
 
 %package sdl
 Summary:	Unix Amiga Emulator, SDL version
-Summary(pl):	Uniksowy emulator Amigi, wersja SDL
+Summary(pl.UTF-8):   Uniksowy emulator Amigi, wersja SDL
 Group:		Applications/Emulators
 
 %description sdl
@@ -52,15 +52,15 @@ extreme, exciting, egalitarian, eggplant, ...
 
 This version uses SDL as audio and video output.
 
-%description sdl -l pl
-To jest wersja UAE (Ubiquitous Amiga Emulator - wszêdobylskiego
+%description sdl -l pl.UTF-8
+To jest wersja UAE (Ubiquitous Amiga Emulator - wszÄ™dobylskiego
 emulatora Amigi) z rdzeniem emulatora opartym na WinUAE 0.8.27. Jest
-to próba przeniesienia wielu wspania³ych mo¿liwo¶ci WinUAE na
-platformy inne ni¿ Windows. Ta wersja ma wreszcie nazwê - E-UAE - jako
-¿e w³a¶nie tak wszyscy j± nazywali. "E" mo¿e oznaczaæ co tylko chcemy.
-Eksperymentalny, ekstremalny, ekscytuj±cy, egalitarny...
+to prÃ³ba przeniesienia wielu wspaniaÅ‚ych moÅ¼liwoÅ›ci WinUAE na
+platformy inne niÅ¼ Windows. Ta wersja ma wreszcie nazwÄ™ - E-UAE - jako
+Å¼e wÅ‚aÅ›nie tak wszyscy jÄ… nazywali. "E" moÅ¼e oznaczaÄ‡ co tylko chcemy.
+Eksperymentalny, ekstremalny, ekscytujÄ…cy, egalitarny...
 
-Ta wersja u¿ywa SDL jako wyj¶cia audio i wideo.
+Ta wersja uÅ¼ywa SDL jako wyjÅ›cia audio i wideo.
 
 %prep
 %setup -q -n %{name}-%{version}-%{_wip}
