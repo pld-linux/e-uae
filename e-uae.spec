@@ -1,5 +1,5 @@
 Summary:	Unix Amiga Emulator
-Summary(pl.UTF-8):   Uniksowy emulator Amigi
+Summary(pl.UTF-8):	Uniksowy emulator Amigi
 Name:		e-uae
 Version:	0.8.29
 %define	_wip	WIP3
@@ -39,7 +39,7 @@ Eksperymentalny, ekstremalny, ekscytujący, egalitarny...
 
 %package sdl
 Summary:	Unix Amiga Emulator, SDL version
-Summary(pl.UTF-8):   Uniksowy emulator Amigi, wersja SDL
+Summary(pl.UTF-8):	Uniksowy emulator Amigi, wersja SDL
 Group:		Applications/Emulators
 
 %description sdl
