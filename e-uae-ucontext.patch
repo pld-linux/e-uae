@@ -1,0 +1,29 @@
+--- e-uae-0.8.29-WIP4/src/compemu_raw_x86.c.orig	2007-02-27 07:53:22.000000000 +0100
++++ e-uae-0.8.29-WIP4/src/compemu_raw_x86.c	2020-12-29 22:13:57.711867849 +0100
+@@ -2196,16 +2196,16 @@
+ 
+ typedef void *CONTEXT_T;
+ 
+-#define CONTEXT_EIP(context)  (((struct ucontext *)context)->uc_mcontext.gregs[REG_EIP])
+-#define CONTEXT_EAX(context)  (((struct ucontext *)context)->uc_mcontext.gregs[REG_EAX])
+-#define CONTEXT_ECX(context)  (((struct ucontext *)context)->uc_mcontext.gregs[REG_ECX])
+-#define CONTEXT_EDX(context)  (((struct ucontext *)context)->uc_mcontext.gregs[REG_EDX])
+-#define CONTEXT_EBX(context)  (((struct ucontext *)context)->uc_mcontext.gregs[REG_EBX])
+-#define CONTEXT_ESP(context)  (((struct ucontext *)context)->uc_mcontext.gregs[REG_ESP])
+-#define CONTEXT_EBP(context)  (((struct ucontext *)context)->uc_mcontext.gregs[REG_EBP])
+-#define CONTEXT_ESI(context)  (((struct ucontext *)context)->uc_mcontext.gregs[REG_ESI])
+-#define CONTEXT_EDI(context)  (((struct ucontext *)context)->uc_mcontext.gregs[REG_EDI])
+-#define CONTEXT_CR2(context)  (((struct ucontext *)context)->uc_mcontext.cr2)
++#define CONTEXT_EIP(context)  (((struct ucontext_t *)context)->uc_mcontext.gregs[REG_EIP])
++#define CONTEXT_EAX(context)  (((struct ucontext_t *)context)->uc_mcontext.gregs[REG_EAX])
++#define CONTEXT_ECX(context)  (((struct ucontext_t *)context)->uc_mcontext.gregs[REG_ECX])
++#define CONTEXT_EDX(context)  (((struct ucontext_t *)context)->uc_mcontext.gregs[REG_EDX])
++#define CONTEXT_EBX(context)  (((struct ucontext_t *)context)->uc_mcontext.gregs[REG_EBX])
++#define CONTEXT_ESP(context)  (((struct ucontext_t *)context)->uc_mcontext.gregs[REG_ESP])
++#define CONTEXT_EBP(context)  (((struct ucontext_t *)context)->uc_mcontext.gregs[REG_EBP])
++#define CONTEXT_ESI(context)  (((struct ucontext_t *)context)->uc_mcontext.gregs[REG_ESI])
++#define CONTEXT_EDI(context)  (((struct ucontext_t *)context)->uc_mcontext.gregs[REG_EDI])
++#define CONTEXT_CR2(context)  (((struct ucontext_t *)context)->uc_mcontext.cr2)
+ 
+ /*
+  * Try to handle faulted memory access in compiled code

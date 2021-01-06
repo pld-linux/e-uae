@@ -1,0 +1,26 @@
+--- e-uae-0.8.29-WIP4/configure.in.orig	2007-03-28 03:41:28.000000000 +0200
++++ e-uae-0.8.29-WIP4/configure.in	2021-01-06 19:14:51.132202015 +0100
+@@ -1163,8 +1163,6 @@
+         UAE_DEFINES="$UAE_DEFINES -DSCSIEMU"
+         NEED_THREAD_SUPPORT=yes
+         if [[ "$srcdir" != "." ]]; then
+-          AC_CONFIG_LINKS(src/libscg.a:src/libscg.a)
+-          AC_CONFIG_LINKS(src/libschily.a:src/libschily.a)
+ 	  UAE_LIBS="$UAE_LIBS $LIBSCG_LIBS"
+         else
+           UAE_LIBS="$UAE_LIBS -L. $SCGLIBS"
+--- e-uae-0.8.29-WIP4/src/blkdev-libscg.c.orig	2005-09-12 06:09:48.000000000 +0200
++++ e-uae-0.8.29-WIP4/src/blkdev-libscg.c	2021-01-06 21:18:59.528517256 +0100
+@@ -178,9 +178,9 @@
+ 
+ static void print_product (const struct scsi_inquiry *ip)
+ {
+-    write_log ("'%.8s' ",  ip->vendor_info);
+-    write_log ("'%.16s' ", ip->prod_ident);
+-    write_log ("'%.4s' ",  ip->prod_revision);
++    write_log ("'%.8s' ",  ip->inq_vendor_info);
++    write_log ("'%.16s' ", ip->inq_prod_ident);
++    write_log ("'%.4s' ",  ip->inq_prod_revision);
+ 
+     if (ip->type == INQ_ROMD)
+ 	write_log ("CD-ROM");

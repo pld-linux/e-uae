@@ -1,0 +1,50 @@
+--- e-uae-0.8.29-WIP4/src/gui-gtk/gtkui.c.orig	2007-03-12 21:21:17.000000000 +0100
++++ e-uae-0.8.29-WIP4/src/gui-gtk/gtkui.c	2020-12-29 21:50:23.852860714 +0100
+@@ -2244,7 +2244,7 @@
+     if (gui_available)
+ 	do_message_box (NULL, msg, TRUE, TRUE);
+ 
+-    write_log (msg);
++    write_log ("%s", msg);
+ }
+ 
+ void gui_notify_state (int state)
+--- e-uae-0.8.29-WIP4/src/newcpu.c.orig	2007-03-28 03:27:18.000000000 +0200
++++ e-uae-0.8.29-WIP4/src/newcpu.c	2020-12-29 22:35:14.681616576 +0100
+@@ -2075,7 +2075,7 @@
+ 	}
+ 	while (i++ < 5)
+ 	    f_out (f, "     ");
+-	f_out (f, instrname);
++	fputs (instrname, f);
+ 
+ 	if (ccpt != 0) {
+ 	    if (deaddr)
+--- e-uae-0.8.29-WIP4/src/cfgfile.c.orig	2007-03-28 03:39:39.000000000 +0200
++++ e-uae-0.8.29-WIP4/src/cfgfile.c	2020-12-29 22:36:35.887843311 +0100
+@@ -285,11 +285,9 @@
+ void cfgfile_write (FILE *f, const char *format,...)
+ {
+     va_list parms;
+-    char tmp[CONFIG_BLEN];
+ 
+     va_start (parms, format);
+-    vsprintf (tmp, format, parms);
+-    fprintf (f, tmp);
++    vfprintf (f, format, parms);
+     va_end (parms);
+ }
+ 
+--- e-uae-0.8.29-WIP4/src/enforcer.c.orig	2007-02-16 22:44:18.000000000 +0100
++++ e-uae-0.8.29-WIP4/src/enforcer.c	2020-12-29 22:37:12.217646496 +0100
+@@ -334,8 +334,8 @@
+     sprintf (enforcer_buf_ptr, "Name: \"%s\"\n\n", native_task_name);
+     enforcer_buf_ptr += strlen (enforcer_buf_ptr);
+ 
+-    console_out (enforcer_buf);
+-    write_log (enforcer_buf);
++    console_out ("%s", enforcer_buf);
++    write_log ("%s", enforcer_buf);
+ 
+     enforcer_hit = 0;
+     flashscreen = 30;
