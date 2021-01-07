@@ -1,6 +1,7 @@
 #
 # Conditional build:
 %bcond_with	capsimage	# use capsimage for .IPF, .RAW and .CTR disk image support
+%bcond_with	scsi		# SCSI devices emulation (uses libscg: cdrtools <= 2.01.01a08 or result is non-distributable)
 
 Summary:	Unix Amiga Emulator
 Summary(pl.UTF-8):	Uniksowy emulator Amigi
@@ -23,7 +24,10 @@ BuildRequires:	SDL-devel >= 1.2.0
 BuildRequires:	alsa-lib-devel
 BuildRequires:	autoconf >= 2.55
 BuildRequires:	automake >= 1:1.7
-BuildRequires:	cdrtools-devel > 2:2.0
+%if %{with scsi}
+BuildRequires:	cdrtools-devel >= 2:2.01
+#BuildRequires:	cdrtools-devel <= 2:2.01.01a09
+%endif
 BuildRequires:	gtk+2-devel >= 2.0.0
 %{?with_capsimage:BuildRequires:	libcapsimage-devel}
 BuildRequires:	pkgconfig
@@ -100,7 +104,7 @@ CONFOPTS=`cat` << EOF
 	--enable-cycle-exact-cpu
 	--enable-enforcer
 	--enable-fdi
-	--enable-scsi-device
+	--enable-scsi-device%{!?with_scsi:=no}
 	--enable-threads
 	--enable-ui
 	--with-caps%{!?with_capsimage:=no}
