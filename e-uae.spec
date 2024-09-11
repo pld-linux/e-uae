@@ -18,6 +18,7 @@ Source2:	uae.png
 Patch0:		%{name}-format.patch
 Patch1:		%{name}-ucontext.patch
 Patch2:		%{name}-system-libscg.patch
+Patch3:		%{name}-linkage.patch
 URL:		http://www.rcdrummond.net/uae/
 BuildRequires:	OpenGL-GLU-devel
 BuildRequires:	SDL-devel >= 1.2.0
@@ -85,6 +86,7 @@ Ta wersja używa SDL jako wyjścia dźwięk i obrazu.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
 
 %build
 %{__aclocal} -I m4

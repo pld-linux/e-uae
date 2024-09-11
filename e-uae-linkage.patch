@@ -1,0 +1,146 @@
+--- e-uae-0.8.29-WIP4/src/dms/u_heavy.c.orig	2004-05-19 03:22:13.000000000 +0200
++++ e-uae-0.8.29-WIP4/src/dms/u_heavy.c	2021-01-17 19:49:42.665332044 +0100
+@@ -30,51 +30,8 @@
+ 
+ static USHORT read_tree_c(void);
+ static USHORT read_tree_p(void);
+-INLINE USHORT decode_c(void);
+-INLINE USHORT decode_p(void);
+ 
+-
+-
+-USHORT Unpack_HEAVY(UCHAR *in, UCHAR *out, UCHAR flags, USHORT origsize){
+-	USHORT j, i, c, bitmask;
+-	UCHAR *outend;
+-
+-	/*  Heavy 1 uses a 4Kb dictionary,  Heavy 2 uses 8Kb  */
+-
+-	if (flags & 8) {
+-		np = 15;
+-		bitmask = 0x1fff;
+-	} else {
+-		np = 14;
+-		bitmask = 0x0fff;
+-	}
+-
+-	initbitbuf(in);
+-
+-	if (flags & 2) {
+-		if (read_tree_c()) return 1;
+-		if (read_tree_p()) return 2;
+-	}
+-
+-	outend = out+origsize;
+-
+-	while (out<outend) {
+-		c = decode_c();
+-		if (c < 256) {
+-			*out++ = text[heavy_text_loc++ & bitmask] = (UCHAR)c;
+-		} else {
+-			j = (USHORT) (c - OFFSET);
+-			i = (USHORT) (heavy_text_loc - decode_p() - 1);
+-			while(j--) *out++ = text[heavy_text_loc++ & bitmask] = text[i++ & bitmask];
+-		}
+-	}
+-
+-	return 0;
+-}
+-
+-
+-
+-INLINE USHORT decode_c(void){
++static INLINE USHORT decode_c(void){
+ 	USHORT i, j, m;
+ 
+ 	j = c_table[GETBITS(12)];
+@@ -96,7 +53,7 @@
+ 
+ 
+ 
+-INLINE USHORT decode_p(void){
++static INLINE USHORT decode_p(void){
+ 	USHORT i, j, m;
+ 
+ 	j = pt_table[GETBITS(8)];
+@@ -127,6 +84,48 @@
+ }
+ 
+ 
++
++
++
++
++USHORT Unpack_HEAVY(UCHAR *in, UCHAR *out, UCHAR flags, USHORT origsize){
++	USHORT j, i, c, bitmask;
++	UCHAR *outend;
++
++	/*  Heavy 1 uses a 4Kb dictionary,  Heavy 2 uses 8Kb  */
++
++	if (flags & 8) {
++		np = 15;
++		bitmask = 0x1fff;
++	} else {
++		np = 14;
++		bitmask = 0x0fff;
++	}
++
++	initbitbuf(in);
++
++	if (flags & 2) {
++		if (read_tree_c()) return 1;
++		if (read_tree_p()) return 2;
++	}
++
++	outend = out+origsize;
++
++	while (out<outend) {
++		c = decode_c();
++		if (c < 256) {
++			*out++ = text[heavy_text_loc++ & bitmask] = (UCHAR)c;
++		} else {
++			j = (USHORT) (c - OFFSET);
++			i = (USHORT) (heavy_text_loc - decode_p() - 1);
++			while(j--) *out++ = text[heavy_text_loc++ & bitmask] = text[i++ & bitmask];
++		}
++	}
++
++	return 0;
++}
++
++
+ 
+ static USHORT read_tree_c(void){
+ 	USHORT i,n;
+--- e-uae-0.8.29-WIP4/src/include/bsdsocket.h.orig	2006-04-30 04:06:00.000000000 +0200
++++ e-uae-0.8.29-WIP4/src/include/bsdsocket.h	2021-01-17 19:55:37.727093143 +0100
+@@ -80,7 +80,8 @@
+     uae_u32 timeout;
+     uae_u32 sigmp;
+ #endif
+-} *socketbases;
++};
++extern struct socketbase *socketbases;
+ 
+ 
+ #define LIBRARY_SIZEOF 36
+--- e-uae-0.8.29-WIP4/src/bsdsocket.c.orig	2007-01-27 03:37:12.000000000 +0100
++++ e-uae-0.8.29-WIP4/src/bsdsocket.c	2021-01-17 19:56:44.417220586 +0100
+@@ -29,6 +29,7 @@
+ # include <winsock2.h>
+ #endif
+ 
++struct socketbase *socketbases;
+ static uae_u32 SockLibBase;
+ 
+ #define SOCKPOOLSIZE 128
+--- e-uae-0.8.29-WIP4/src/audio.c.orig	2007-02-16 06:24:29.000000000 +0100
++++ e-uae-0.8.29-WIP4/src/audio.c	2021-01-17 19:58:28.805971004 +0100
+@@ -1193,7 +1193,7 @@
+ #ifdef CPUEMU_6
+ extern uae_u8 cycle_line[];
+ #endif
+-uae_u16	dmacon;
++extern uae_u16	dmacon;
+ 
+ void audio_hsync (int dmaaction)
+ {
